@@ -255,6 +255,13 @@ Open a web browser to (parameters from values.yaml):
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-welcome.png)
 
+Login with credentials
+User: Admin
+Password: VMware1!
+
+> Note: If you forgot the password, run the command `$ printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo`
+
+
 
 
 
