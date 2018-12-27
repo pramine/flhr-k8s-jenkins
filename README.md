@@ -253,7 +253,8 @@ jenkins-7d48db75c5-2mpn9   1/1     Running   0          5m
 Open a web browser to (parameters from values.yaml):
 `http://<HostName>/<JenkinsUriPrefix>`
 
-! [alt text] (https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-welcome.png "Jenkins Welcome UI")
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-welcome.png)
+
 
 
 
