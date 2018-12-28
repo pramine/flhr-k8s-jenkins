@@ -11,7 +11,7 @@ Integrate Jenkins with PKS provisioned Kubernetes Cluster
 `$ kubectl create ns jenkins` \
 `$ kubectl set-context <CONTEXT_NAME> namespace=jenkins`
 
-### Prepare Persistance Storage
+### Prepare Persistence Storage
 #### Create a storage class
 `$ cat jenkins-sc.yaml`
 ```
@@ -26,7 +26,7 @@ parameters:
 `$ kubectl apply -f jenkins-sc.yaml` \
 `$ kubectl get sc`
 
-#### Create a persistant volume claim:
+#### Create a persistent volume claim:
 `$ cat jenkins-pvc.yaml`
 ```
 kind: PersistentVolumeClaim
@@ -95,7 +95,7 @@ Open `values.yaml` with a text editor
 
 #### Identify Jenkins Container Images' Location
 
-If pulling images from a private registry, replace the following intances with the appropriate path:
+If pulling images from a private registry, replace the following instances with the appropriate path:
 ```
 Master:
   Image: "harbor.lab.local/jenkins/jenkins-master"
@@ -157,7 +157,7 @@ Comment out Ingress Hostname and URI Prefix:
 # HostName: jenkins.pksk8s01apps.lab.local
 # JenkinsUriPrefix: "/jenkins"
 ```
-#### Configure Persistance
+#### Configure Persistence
 
 Verify claim name matches PVC created above
 ```
@@ -175,7 +175,7 @@ Save changes to `values.yaml` and close
 ## Install the Chart to the Kubernetes Cluster
 
 `$ cd ..` \
-or `cd` to the directory containing the jenkins chart directory
+or `cd` to the directory containing the Jenkins chart directory
 
 Use `$ kubectl config view` to verify context and namespace or set with \
 `$ kubectl set-context <CONTEXT_NAME> namespace=jenkins`
@@ -260,7 +260,7 @@ Password: **VMware1!**
 
 > Note: If you forgot the password, run the command `$ printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo`
 
-> If at any time while attempting to access the Jenkins Web UI, you recieve a browser error, i.e. 502, clear the browser cache and restart it or either open an "New Incognito Window" (Google Chrome) or "New Private Window" (Firefox).
+> If at any time while attempting to access the Jenkins Web UI, you receive a browser error, i.e. 502, clear the browser cache and restart it or either open an "New Incognito Window" (Google Chrome) or "New Private Window" (Firefox).
 
 After logging in, you may notice an red administrative monitor alert near the top of the page. Select it to review the alert message.  Most likely, a dependancy is required or a plugin update is available. Select **Correct**
 
@@ -431,7 +431,7 @@ Hover over the right of each project hyperlink to find a drop-down menu. For eac
 Shortly following the builds entering the build queue, Jenkins should automatically launch two additional executors inside the Kubernetes cluster for processing the queue and executing the shell commands \
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-executor.png)
 
-Both projects shall complete sucessfully \
+Both projects shall complete successfully \
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-success.png)
 
 ### Create and Run a Scripted Pipeline
