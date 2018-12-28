@@ -387,10 +387,21 @@ Both projects shall complete sucessfully \
 
 
 ### Create and Run a Declarative Pipeline
+Return to the Dashboard and Select **New Item** \
+*Enter an Item Name* such as **Declarative Pipeline Example**, select **Pipeline**, and select **OK**
+Scroll to the *Pipeline* section, paste the content from [Declarative Pipeline Example](https://raw.githubusercontent.com/csaroka/kubernetes-jenkins/master/jenkins-pipeline-examples/declarative-pipeline-01)
+into the *Script* field, and select **OK*
+From the Dashboard, select **Build Now**
+
+The pipeline creates a single Kubernetes pod with two containers, from maven and busybox images
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-declarative-success.png)
 
 
 
 
 
-References:
-https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster
+References: \
+- [How to Setup Scalable Jenkins on Top of a Kubernetes Cluster](https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster)
+- [Jenkins plugin to run dynamic slaves in a Kubernetes/Docker environment](https://github.com/jenkinsci/kubernetes-plugin/tree/master/examples)
+- [Kubernetes Tutorials-CI/CD Pipeline](https://kubernetes.io/docs/tutorials/#ci-cd-pipeline)
+
