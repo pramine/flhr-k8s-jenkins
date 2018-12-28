@@ -252,8 +252,6 @@ jenkins-7d48db75c5-2mpn9   1/1     Running   0          5m
 Open a web browser to (parameters from values.yaml):
 `http://<HostName>/<JenkinsUriPrefix>`
 
-> If at any time while attempting to access the Jenkins Web UI, you recieve a browser error, i.e. 502, clear the browser cache and restart it or either open an "New Incognito Window" (Google Chrome) or "New Private Window" (Firefox).
-
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-welcome.png)
 
 Login with credentials \
@@ -262,6 +260,7 @@ Password: **VMware1!**
 
 > Note: If you forgot the password, run the command `$ printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo`
 
+> If at any time while attempting to access the Jenkins Web UI, you recieve a browser error, i.e. 502, clear the browser cache and restart it or either open an "New Incognito Window" (Google Chrome) or "New Private Window" (Firefox).
 
 After logging in, you may notice an red administrative monitor alert near the top of the page. Select it to review the alert message.  Most likely, a dependancy is required or a plugin update is available. Select **Correct**
 
