@@ -59,7 +59,7 @@ spec:
 Follow instructions available here for installing the Helm client:  
 https://docs.helm.sh/using_helm/#installing-helm 
 
-Apply Tiller RBAC policy
+Apply the Tiller Service Account and RBAC policy
 
 `$ cat tiller-rbac.yaml`
 ```
@@ -85,7 +85,7 @@ subjects:
 
 `$ kubectl apply -f tiller-rbac.yaml`
 
-Deploy Tiller to the Cluster \
+Deploy Tiller to the Kubernetes Cluster \
 `$ helm init --service-account tiller`
 
 ### Prepare the Jenkins Helm Chart values.yaml
