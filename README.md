@@ -371,6 +371,13 @@ Repeat the process to create a second test project, **"Test Project 2"**
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-list.png)
 
+Hover over the right of each project hyperlink to find a drop-down menu. For each project select **Build Now** \
+
+After initiating the builds, a build for each project should enter the build queue
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-buildqueue.png)
+
+Shortly following the builds entering the build queue, Jenkins should automatically launch two additional executors inside the Kubernetes cluster for executing the shell commands
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-executor.png)
 
 
 
@@ -380,3 +387,8 @@ Repeat the process to create a second test project, **"Test Project 2"**
 
 
 
+
+
+
+References:
+https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster
