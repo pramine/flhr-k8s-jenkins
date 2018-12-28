@@ -376,10 +376,10 @@ Hover over the right of each project hyperlink to find a drop-down menu. For eac
 After initiating the builds, a build for each project should enter the build queue
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-buildqueue.png)
 
-Shortly following the builds entering the build queue, Jenkins should automatically launch two additional executors inside the Kubernetes cluster for executing the shell commands
+Shortly following the builds entering the build queue, Jenkins should automatically launch two additional executors inside the Kubernetes cluster for processing the queue and executing the shell commands
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-executor.png)
 
-Both project shall complete sucessfully
+Both projects shall complete sucessfully
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-success.png)
 
 
