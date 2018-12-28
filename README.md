@@ -319,18 +319,18 @@ Return to the Jenkins Dashboard and select **Manage Jenkins**>**Configure System
 
 Open the command-line and issue the command \
 `$ kubectl config view` \
-Copy the URL from the server parameter output and replace the form value for Kubernetes URL
+Copy the URL from the server parameter output and replace the form value for *Kubernetes URL*
 ```
 apiVersion: v1
 clusters:
 - cluster:
     server: https://pksk8s01api.lab.local:8443
 ```
-To collect the Kubernetes server certificate key, run the command: \
+To collect the *Kubernetes server certificate key*, run the command: \
 `$ openssl s_client -connect <Kubernetes Cluster API FQDN>:8443` \
 For example, \
 `$ openssl s_client -connect pksk8s01api.lab.local:8443` \
-Copy the complete Server certificate and paste to the form value for Kubernetes server certificate key
+Copy the complete Server certificate and paste to the form value for *Kubernetes server certificate key*
 ```
 -----BEGIN CERTIFICATE-----
 MIIDyzCCArOgAwIBAgIUQcRSyQ0Tm99eSoAjBoYQbyCzyKgwDQYJKoZIhvcNAQEL
@@ -343,6 +343,16 @@ hY8kAGeuT10K0cOVwtvsVXurIByTVettpfKOK3vMn5y5CXRtKXzJHYs8F25wojXs
 1Jczjvdbfnw4miV4fK8D
 -----END CERTIFICATE-----
 ```
+Select the *Credentials* drop-down option and choose **Secret Text** \
+
+Select **Test Connection** and test results should indicate **Connection test successful** \
+
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kubernetes-cloud-config.png)
+
+
+
+
+
 
 
 
