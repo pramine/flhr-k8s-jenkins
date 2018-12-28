@@ -393,10 +393,7 @@ Copy the complete Server certificate and paste to the form value for *Kubernetes
 -----BEGIN CERTIFICATE-----
 MIIDyzCCArOgAwIBAgIUQcRSyQ0Tm99eSoAjBoYQbyCzyKgwDQYJKoZIhvcNAQEL
 BQAwDTELMAkGA1UEAxMCY2EwHhcNMTgxMjA5MTQyNDE1WhcNMTkxMjA5MTQyNDE1
-WjA5MR4wHAYDVQQDExVwa3NrOHMwMWFwaS5sYWIubG9jYWwxFzAVBgNVBAoTDnN5
 <Truncated>
-kfdbQvPP8SIQVB1sYA7V5r1cGobZcnlm9FlPrHF0cfEleJK0/3QpMQeV1dYmmGe4
-ehBuyOeXEFklsMs1eLYE1HEhJuWVQA/jo1P1bF1iagRqFwplk5wtAN7dJim5cOOj
 hY8kAGeuT10K0cOVwtvsVXurIByTVettpfKOK3vMn5y5CXRtKXzJHYs8F25wojXs
 1Jczjvdbfnw4miV4fK8D
 -----END CERTIFICATE-----
@@ -459,11 +456,19 @@ The pipeline creates a single Kubernetes pod with two containers, from maven and
 Enter the login credentials and from the Dashboard select **Manage Jenkins**>**Manage Plugins**. Select the **Available** tab and enter "kubernetes" in the search filter. Choose the following plugin options:
 - GitHub
 - GitHub API
+- GitHub Authentication
+- GitHub Integration
 Select **Download now and install after restart** \
 On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
 
 After a few minutes, if the status does not change, select **Return to Dashboard** and complete the login prompt.
 
+Login into your GitHub Account. Select the drop-down next to our profile picture, and choose **Settings**. Then select **Developer Settings**>**Personal Access Tokens**. Select **Generate New Token**. Name the token and select the privilege *admin:repo_hook*.  Copy the new access token to the clipboard or a temporary text file.
+
+From the Jenkins Dashboard select **Credentials**>**System**>**Global credentials (unrestricted)**>**Add Credentials** \
+Select the *Kind* drop-down and choose **Username with Password**
+Enter your **< GitHub Username >** in the Username field, past the **< API Access Token >** in the Password field, and enter **github** for both ID and description
+Select **OK**
 
 References: \
 - [How to Setup Scalable Jenkins on Top of a Kubernetes Cluster](https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster)
