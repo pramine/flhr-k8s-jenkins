@@ -306,7 +306,7 @@ On the following page, choose **Restart Jenkins when installation is complete an
 
 After a few minutes, if the status does not change, select **Return to Dashboard** and complete the login prompt.
 
-### Configuring the Credentials and Kubernetes Plugin
+### Configuring the Kubernetes Credentials and Plugin
 
 From the Jenkins Dashboard select **Credentials**>**System**>**Global credentials (unrestricted)**>**Add Credentials** \
 Select the *Kind* drop-down and choose **Kubernetes Service Account**
@@ -355,9 +355,17 @@ For basic operations, all other fields' default value should've been populated w
 - *Cloud*/*Kubernetes*/*Images*/*Kubernetes Pod Template*/*Containers*/*Container Template*/*Docker Image* = **< Registry Path to Jenkins Slave Image >** \
 For example, harbor.lab.local/jenkins/jenkins-slave:v1 or jenkins/jnlp-slave
 
+Select **Save** and return to the Jenkins Dashboard
 
+### Create Test Projects for Executor Verification
+Select **New Item**
+Enter a name for the first test project, such as **"Test Project 1"**, select **Freestyle Project**, and select **OK**
 
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testproject-1.png)
 
+Select the *Build* tab, then select the **Add build step** drop-down and choose **Execute shell**.  In the *Command* field enter `sleep 30`, then select **Save**
+
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-build-testproject-1.png)
 
 
 
