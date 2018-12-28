@@ -4,7 +4,7 @@ Integrate Jenkins with PKS provisioned Kubernetes Cluster
 ## Prepare the Kubernetes Cluster and Chart Values
 
 ### Clone the repo to a local directory
-$ git clone https://github.com/csaroka/kubernetes-jenkins.git
+$ git clone https://github.com/csaroka/kubernetes-jenkins.git \
 $ cd kubernetes-jenkins
 
 ### Create the project Namespace
