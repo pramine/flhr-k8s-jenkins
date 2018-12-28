@@ -458,6 +458,7 @@ Enter the login credentials and from the Dashboard select **Manage Jenkins**>**M
 - GitHub API
 - GitHub Authentication
 - GitHub Integration \
+
 Select **Download now and install after restart** \
 On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
 
