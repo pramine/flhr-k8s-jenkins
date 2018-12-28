@@ -357,7 +357,7 @@ For example, harbor.lab.local/jenkins/jenkins-slave:v1 or jenkins/jnlp-slave
 
 Select **Save** and return to the Jenkins Dashboard
 
-### Create Test Projects for Executor Verification
+### Create Test Projects to Verify Executors
 Select **New Item**
 Enter a name for the first test project, such as **"Test Project 1"**, select **Freestyle Project**, and select **OK**
 
@@ -366,6 +366,14 @@ Enter a name for the first test project, such as **"Test Project 1"**, select **
 Select the *Build* tab, then select the **Add build step** drop-down and choose **Execute shell**.  In the *Command* field enter `sleep 30`, then select **Save**
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-build-testproject-1.png)
+
+Repeat the process to create a second test project, **"Test Project 2"**
+
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-list.png)
+
+
+
+
 
 
 
