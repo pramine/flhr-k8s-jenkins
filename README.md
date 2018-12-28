@@ -94,7 +94,6 @@ Deploy Tiller to the Kubernetes Cluster \
 Open `values.yaml` with a text editor
 
 #### Identify Jenkins Container Images' Location
-Run find function for "image"
 
 If pulling images from a private registry, replace the following intances with the appropriate path:
 ```
