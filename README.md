@@ -379,6 +379,9 @@ After initiating the builds, a build for each project should enter the build que
 Shortly following the builds entering the build queue, Jenkins should automatically launch two additional executors inside the Kubernetes cluster for executing the shell commands
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-executor.png)
 
+Both project shall complete sucessfully
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-success.png)
+
 
 
 
