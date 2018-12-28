@@ -371,6 +371,7 @@ Return to the Jenkins Web UI, where you left off configuring the **Kubernetes co
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/sa-kubeconfig.png)
 
+Select **Save**
 
 Return to the Jenkins Dashboard and select **Manage Jenkins**>**Configure System**. Scroll to the section *Cloud*>*Kubernetes* and notice the required fields.
 
