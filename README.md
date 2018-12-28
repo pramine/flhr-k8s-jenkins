@@ -306,7 +306,7 @@ On the following page, choose **Restart Jenkins when installation is complete an
 
 After a few minutes, if the status does not change, select **Return to Dashboard** and complete the login prompt.
 
-### Configuring the Credentials
+### Configuring the Credentials and Kubernetes Plugin
 
 From the Jenkins Dashboard select **Credentials**>**System**>**Global credentials (unrestricted)**>**Add Credentials** \
 Select the *Kind* drop-down and choose **Kubernetes Service Account**
@@ -314,6 +314,37 @@ Select the *Kind* drop-down and choose **Kubernetes Service Account**
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kubernetes-service-account.png)
 
 Select **OK**
+
+Return to the Jenkins Dashboard and select **Manage Jenkins**>**Configure System**. Scroll to the section *Cloud*>*Kubernetes* and notice the required fields.
+
+Open the command-line and issue the command \
+`$ kubectl config view` \
+Copy the URL from the server parameter output and replace the form value for Kubernetes URL
+```
+apiVersion: v1
+clusters:
+- cluster:
+    server: https://pksk8s01api.lab.local:8443
+```
+To collect the Kubernetes server certificate key, run the command: \
+`$ openssl s_client -connect <Kubernetes Cluster API FQDN>:8443` \
+For example, \
+`$ openssl s_client -connect pksk8s01api.lab.local:8443` \
+Copy the complete Server certificate and paste to the form value for Kubernetes server certificate key
+```
+-----BEGIN CERTIFICATE-----
+MIIDyzCCArOgAwIBAgIUQcRSyQ0Tm99eSoAjBoYQbyCzyKgwDQYJKoZIhvcNAQEL
+BQAwDTELMAkGA1UEAxMCY2EwHhcNMTgxMjA5MTQyNDE1WhcNMTkxMjA5MTQyNDE1
+WjA5MR4wHAYDVQQDExVwa3NrOHMwMWFwaS5sYWIubG9jYWwxFzAVBgNVBAoTDnN5
+<Truncated>
+kfdbQvPP8SIQVB1sYA7V5r1cGobZcnlm9FlPrHF0cfEleJK0/3QpMQeV1dYmmGe4
+ehBuyOeXEFklsMs1eLYE1HEhJuWVQA/jo1P1bF1iagRqFwplk5wtAN7dJim5cOOj
+hY8kAGeuT10K0cOVwtvsVXurIByTVettpfKOK3vMn5y5CXRtKXzJHYs8F25wojXs
+1Jczjvdbfnw4miV4fK8D
+-----END CERTIFICATE-----
+```
+
+
 
 
 
