@@ -262,7 +262,7 @@ Password: **VMware1!**
 
 > If at any time while attempting to access the Jenkins Web UI, you receive a browser error, i.e. 502, clear the browser cache and restart it or either open an "New Incognito Window" (Google Chrome) or "New Private Window" (Firefox).
 
-After logging in, you may notice an red administrative monitor alert near the top of the page. Select it to review the alert message.  Most likely, a dependancy is required or a plugin update is available. Select **Correct**
+After logging in, you may notice an red administrative monitor alert near the top of the page. Select it to review the alert message.  Most likely, a dependency is required or a plugin update is available. Select **Correct**
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-updates.png)
 
