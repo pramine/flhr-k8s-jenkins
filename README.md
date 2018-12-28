@@ -336,8 +336,7 @@ clusters:
 With a vi or another text editor, edit the file *svc-acct-kubeconfig.sh*. \
 For the *server* variable, enter the *server* value from the kubectl config view output. \
 For the *name* variable, enter the *Tokens* value from the kubectl describe sa jenkins output. \
-Save and close the file. \
-Run the commands \
+Save and close the file. Then, run the commands to execute the script and generate a skeleton kubeconfig for the service account\
 `$ chmod +x svc-acct-kubeconfig.sh` \
 `$ ./svc-acct-kubeconfig.sh` \
 With a vi or another text editor, edit the new file sa.kubeconfig, and compare the contents to the output from `$ kubectl config view`. Replace the "default-cluster" and "default-context" with the values from the `$ kubectl config view` output. Replace the default (namespace) value with the name of the jenkins namespace.  Replace default-user value with the name of the service account. For example,
