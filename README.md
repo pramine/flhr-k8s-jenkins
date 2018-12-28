@@ -42,7 +42,7 @@ spec:
     requests:
       storage: 20Gi
 ```
-`$ kubectl apply -f jenkins-pvc.yaml`
+`$ kubectl apply -f jenkins-pvc.yaml` \
 `$ kubectl get pvc`
 
 ### (Optional) Pull the Images and Push to a Private Registry. If pulling direct from public registry, skip this step.
