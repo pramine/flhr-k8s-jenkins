@@ -366,7 +366,7 @@ users:
     <Truncated>
     pt7EGu-Z-I5gkLget_AGRrk8KxE-xjRr06gYg7pQ8UggGo3L-ocx3QO-nsVUhnr3-d7XyCDNncivXNlMy4n6-oPXpTbbxb9_nXe_rc3XXBi5O0hkHh0k_SuiVWygvtNrmYH-m8v-isUZFO57IjXC0I7_OJZxZKnrAE-WZ9vFIQOBI-rHVT7n1A1PfZglix-ylgKgJxBoVEFhSwypjDAxbF6FA
 ```
-Return to the Jenkins Web UI, where you left off configuring the **Kubernetes configuration (kubeconfig)** credentials. Enter a *description* such as **Jenkins Service Account Kubeconfig**. Select the radio button for **Enter Directly**. Paste the content from the update *sa.kubeconfig* file
+Return to the Jenkins Web UI, where you left off configuring the **Kubernetes configuration (kubeconfig)** credentials. Enter a *description* such as **Jenkins Service Account Kubeconfig**. Select the radio button for **Enter Directly**. Paste the content from the updated *sa.kubeconfig* file
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/sa-kubeconfig.png)
 
@@ -451,7 +451,7 @@ The pipeline creates a single Kubernetes pod with two containers, from maven and
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-declarative-success.png)
 
 
-## Integrate Jenkins with GitHub
+## Integrate Jenkins with a GitHub Account
 Enter the login credentials and from the Dashboard select **Manage Jenkins**>**Manage Plugins**. Select the **Available** tab and enter "kubernetes" in the search filter. Choose the following plugin options:
 - GitHub
 - GitHub API
