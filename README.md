@@ -321,12 +321,12 @@ Select the *Kind* drop-down and choose **Kubernetes configuration (kubeconfig)**
 Open a command-line and run, \
 `$ kubectl get sa` \
 `$ kubectl describe sa jenkins` \
-Record the Tokens: <value>
+Record the secret value from the *Tokens:* parameter
 ```
 Tokens:              jenkins-token-6xx5l
 ```
 `$ kubectl config view` \
-Record the URL from the server <value>
+Record the URL value from the *server* parameter
 ```
 apiVersion: v1
 clusters:
