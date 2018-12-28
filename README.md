@@ -333,9 +333,9 @@ clusters:
 - cluster:
     server: https://pksk8s01api.lab.local:8443
 ```
-With a vi or another text editor, edit the file svc-acct-kubeconfig.sh.
-For the *server* variable, enter the *server* value from the kubectl config view output
-For the *name* variable, enter the *Tokens* value from the kubectl describe sa jenkins output
+With a vi or another text editor, edit the file *svc-acct-kubeconfig.sh*. \
+For the *server* variable, enter the *server* value from the kubectl config view output. \
+For the *name* variable, enter the *Tokens* value from the kubectl describe sa jenkins output. \
 Save and close the file
 Run the commands
 `$ chmod +x svc-acct-kubeconfig.sh`
