@@ -343,27 +343,27 @@ hY8kAGeuT10K0cOVwtvsVXurIByTVettpfKOK3vMn5y5CXRtKXzJHYs8F25wojXs
 1Jczjvdbfnw4miV4fK8D
 -----END CERTIFICATE-----
 ```
-Select the *Credentials* drop-down option and choose **Secret Text** \
+Select the *Credentials* drop-down option and choose **Secret Text** 
 
 Select **Test Connection** and test results should indicate **Connection test successful** 
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kubernetes-cloud-config.png)
 
-For basic operations, all other fields' default value should've been populated with input from the values.yaml at the time of deployment. Verify the following:
+For basic operations, all other fields' default value should've populated with input from the values.yaml at the time of deployment. Verify the following:
 
 - *Cloud*/*Kubernetes*/*Jenkins URL* = **http://jenkins:8080/jenkins**
 - *Cloud*/*Kubernetes*/*Images*/*Kubernetes Pod Template*/*Containers*/*Container Template*/*Docker Image* = **< Registry Path to Jenkins Slave Image >** \
-For example, harbor.lab.local/jenkins/jenkins-slave:v1 or jenkins/jnlp-slave
+>For example, harbor.lab.local/jenkins/jenkins-slave:v1 or jenkins/jnlp-slave
 
 Select **Save** and return to the Jenkins Dashboard
 
-### Create Test Projects to Verify Executors
-Select **New Item**
+### Create Test Projects to Launch Executor Pods
+Select **New Item** \
 Enter a name for the first test project, such as **"Test Project 1"**, select **Freestyle Project**, and select **OK**
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testproject-1.png)
 
-Select the *Build* tab, then select the **Add build step** drop-down and choose **Execute shell**.  In the *Command* field enter `sleep 30`, then select **Save**
+Scroll to the *Build* section, select the **Add build step** drop-down and choose **Execute shell**.  In the *Command* field enter `sleep 30`, then select **Save**
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-build-testproject-1.png)
 
@@ -371,23 +371,24 @@ Repeat the process to create a second test project, **"Test Project 2"**
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-list.png)
 
-Hover over the right of each project hyperlink to find a drop-down menu. For each project select **Build Now** \
+Hover over the right of each project hyperlink to find a drop-down menu. For each project select **Build Now**
 
-After initiating the builds, a build for each project should enter the build queue
+After initiating the builds, a build for each project should enter the build queue \
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-buildqueue.png)
 
-Shortly following the builds entering the build queue, Jenkins should automatically launch two additional executors inside the Kubernetes cluster for processing the queue and executing the shell commands
+Shortly following the builds entering the build queue, Jenkins should automatically launch two additional executors inside the Kubernetes cluster for processing the queue and executing the shell commands \
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-executor.png)
 
-Both projects shall complete sucessfully
+Both projects shall complete sucessfully \
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-success.png)
 
+### Create and Run a Scripted Pipeline
 
 
 
 
 
-
+### Create and Run a Declarative Pipeline
 
 
 
