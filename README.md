@@ -56,7 +56,7 @@ spec:
 
 ### Install Helm Client and Tiller Server
 
-Helm  
+Follow instructions available here for installing the Helm client:  
 https://docs.helm.sh/using_helm/#installing-helm 
 
 Apply Tiller RBAC policy
