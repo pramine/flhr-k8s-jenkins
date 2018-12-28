@@ -457,7 +457,7 @@ Enter the login credentials and from the Dashboard select **Manage Jenkins**>**M
 - GitHub
 - GitHub API
 - GitHub Authentication
-- GitHub Integration
+- GitHub Integration \
 Select **Download now and install after restart** \
 On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
 
@@ -470,7 +470,7 @@ Select the *Kind* drop-down and choose **Username with Password**
 Enter your **< GitHub Username >** in the Username field, past the **< API Access Token >** in the Password field, and enter **github** for both ID and description
 Select **OK**
 
-References: \
+References: 
 - [How to Setup Scalable Jenkins on Top of a Kubernetes Cluster](https://www.blazemeter.com/blog/how-to-setup-scalable-jenkins-on-top-of-a-kubernetes-cluster)
 - [Jenkins plugin to run dynamic slaves in a Kubernetes/Docker environment](https://github.com/jenkinsci/kubernetes-plugin/tree/master/examples)
 - [Kubernetes Tutorials-CI/CD Pipeline](https://kubernetes.io/docs/tutorials/#ci-cd-pipeline)
