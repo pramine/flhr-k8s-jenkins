@@ -318,9 +318,9 @@ Select **OK**
 Again, Select **Add Credentials** \
 Select the *Kind* drop-down and choose **Kubernetes configuration (kubeconfig)**
 
-Open a command-line and run,
-`$ kubectl get sa`
-`$ kubectl describe sa jenkins`
+Open a command-line and run, \
+`$ kubectl get sa` \
+`$ kubectl describe sa jenkins` \
 Record the Tokens: <value>
 ```
 Tokens:              jenkins-token-6xx5l
