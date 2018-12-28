@@ -345,10 +345,15 @@ hY8kAGeuT10K0cOVwtvsVXurIByTVettpfKOK3vMn5y5CXRtKXzJHYs8F25wojXs
 ```
 Select the *Credentials* drop-down option and choose **Secret Text** \
 
-Select **Test Connection** and test results should indicate **Connection test successful** \
+Select **Test Connection** and test results should indicate **Connection test successful** 
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kubernetes-cloud-config.png)
 
+For basic operations, all other fields' default value should've been populated with input from the values.yaml at the time of deployment. Verify the following:
+
+- *Cloud*/*Kubernetes*/*Jenkins URL* = **http://jenkins:8080/jenkins**
+- *Cloud*/*Kubernetes*/*Images*/*Kubernetes Pod Template*/*Containers*/*Container Template*/*Docker Image* = **< Registry Path to Jenkins Slave Image >** \
+For example, harbor.lab.local/jenkins/jenkins-slave:v1 or jenkins/jnlp-slave
 
 
 
