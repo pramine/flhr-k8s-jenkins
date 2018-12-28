@@ -308,4 +308,13 @@ After a few minutes, if the status does not change, select **Return to Dashboard
 
 ### Configuring the Credentials
 
+From the Jenkins Dashboard select **Credentials**>**System**>**Global credentials (unrestricted)**>**Add Credentials** \
+Select the *Kind* drop-down and choose **Kubernetes Service Account**
+
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kubernetes-service-account.png)
+
+Select **OK**
+
+
+
 
