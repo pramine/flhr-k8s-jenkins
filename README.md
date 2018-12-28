@@ -255,15 +255,18 @@ Open a web browser to (parameters from values.yaml):
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-welcome.png)
 
-Login with credentials
-User: Admin
-Password: VMware1!
+Login with credentials \
+Username: **admin** \
+Password: **VMware1!**
 
 > Note: If you forgot the password, run the command `$ printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo`
 
+After logging in, you may notice an red administrative monitor alert near the top of the page. Select it to review the alert message.  Most likely, a dependancy is required or a plugin update is available. Select **Correct**
 
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-updates.png)
 
-
+Then, choose the updates to install and select **Download now and install after restart**
+On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
 
 
 
