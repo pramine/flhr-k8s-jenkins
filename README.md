@@ -50,7 +50,8 @@ The default jenkins/jnlp-slave image does not contain the kubectl or helm binari
 `$ cd jenkins-slave` \
 `$ docker build jenkins-slave-k8s .` \
 `$ docker tag jnlp-slave-k8s <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1`\
-`$ docker push <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1` 
+`$ docker push <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1`
+`$ cd ..` 
 
 ### (Optional) Pull the Jenkins Master Image and Push to a Private Registry. If pulling direct from public registry, skip this step.
 `$ docker pull jenkins/jenkins:lts` \
