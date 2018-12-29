@@ -406,7 +406,7 @@ Select **Test Connection** and test results should indicate **Connection test su
 For basic operations, all other fields' default value should've populated with input from the values.yaml at the time of deployment. Verify the following:
 
 - *Cloud*/*Kubernetes*/*Jenkins URL* = **http://jenkins:8080/jenkins**
-- *Cloud*/*Kubernetes*/*Images*/*Kubernetes Pod Template*/*Containers*/*Container Template*/*Docker Image* = **< Registry Path to Jenkins Slave Image >** \
+- *Cloud*/*Kubernetes*/*Images*/*Kubernetes Pod Template*/*Containers*/*Container Template*/*Docker Image* = **< Registry Path to Jenkins Slave Image >** 
 >For example, harbor.lab.local/jenkins/jenkins-slave-k8s:v1
 
 Select **Save** and return to the Jenkins Dashboard
@@ -426,12 +426,15 @@ Repeat the process to create a second test project, **"Test Project 2"**
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-list.png)
 
 Hover over the right of each project hyperlink to find a drop-down menu. For each project select **Build Now**. After initiating the builds, a build for each project should enter the build queue \
+
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-buildqueue.png)
 
 Shortly following the builds entering the build queue, Jenkins should automatically launch two additional executors inside the Kubernetes cluster for processing the queue and executing the shell commands \
+
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-executor.png)
 
 Both projects shall complete successfully \
+
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-success.png)
 
 ### Kubernetes plugin - Create and Run a Declarative Pipeline
@@ -442,6 +445,7 @@ into the *Script* field, and select **OK*
 From the Dashboard, select **Build Now**
 
 The pipeline creates a single Kubernetes pod with two containers, from maven and busybox images
+
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-declarative-success.png)
 
 ### Kubernetes-cli plugin - Execute kubectl Commands from the Shell
@@ -451,7 +455,9 @@ Return to the Dashboard and Select **New Item** \
 Scroll to the *Build Environment* section and select **Configure Kubernetes CLI (kubectl)** \
 Select the *Credentials* drop-down menu and choose **Secret Text** \
 Populate the *Kubernetes server endpoint*,*Context name*, and *Cluster name* values with data from the kubeconfig. \
+
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kube-cli-buildenv.png)
+
 Scroll to the next section, *Build*
 Enter the kubectl commands to execute from the shell, for instance
 ```
@@ -463,10 +469,12 @@ sleep 30
 kubectl get all
 kubectl delete ns frontend-test
 ```
+
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kube-cli-build.png)
+
 Select **Save**
 
-In the left pane, select **Build Now** /
+In the left pane, select **Build Now** \
 Following the build, the console output should report namespace objects and "Finished: Success"
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kube-cli-build-out.png)
@@ -476,7 +484,7 @@ Enter the login credentials and from the Dashboard select **Manage Jenkins**>**M
 - GitHub
 - GitHub API
 - GitHub Authentication
-- GitHub Integration \
+- GitHub Integration 
 
 Select **Download now and install after restart** \
 On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
