@@ -467,10 +467,6 @@ Following the build, the console output should report namespace objects and "Fin
 
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kube-cli-build-out.png)
 
-
-### Kubernetes Continuous Deploy plugin - 
-Soon
-
 ## Integrate Jenkins with a GitHub Account
 Enter the login credentials and from the Dashboard select **Manage Jenkins**>**Manage Plugins**. Select the **Available** tab and enter "kubernetes" in the search filter. Choose the following plugin options:
 - GitHub
