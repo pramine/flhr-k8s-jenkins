@@ -430,7 +430,7 @@ Shortly following the builds entering the build queue, Jenkins should automatica
 Both projects shall complete successfully \
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-success.png)
 
-### Kubernetes-plugin Create and Run a Declarative Pipeline
+### Kubernetes plugin - Create and Run a Declarative Pipeline
 Return to the Dashboard and Select **New Item** \
 *Enter an Item Name* such as **Declarative Pipeline Example**, select **Pipeline**, and select **OK**
 Scroll to the *Pipeline* section, paste the content from [Declarative Pipeline Example](https://raw.githubusercontent.com/csaroka/kubernetes-jenkins/master/jenkins-pipeline-examples/declarative-pipeline-01)
@@ -440,9 +440,36 @@ From the Dashboard, select **Build Now**
 The pipeline creates a single Kubernetes pod with two containers, from maven and busybox images
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-declarative-success.png)
 
-### Kubernetes-cli plugin Execute kubectl Commands from the Shell
+### Kubernetes-cli plugin - Execute kubectl Commands from the Shell
+Return to the Dashboard and Select **New Item** \
+*Enter an Item Name* such as **Kubernetes CLI Test**, select **Freestyle project**, and select **OK**
+
+Scroll to the *Build Environment* section and select **Configure Kubernetes CLI (kubectl)** \
+Select the *Credentials* drop-down menu and choose **Secret Text** \
+Populate the *Kubernetes server endpoint*,*Context name*, and *Cluster name* values with data from the kubeconfig. \
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kube-cli-buildenv.png)
+Scroll to the next section, *Build*
+Enter the kubectl commands to execute from the shell, for instance
+```
+kubectl create ns frontend-test
+kubectl config set-context k8s01staging --namespace=frontend-test
+kubectl run nginx01 --image=harbor.lab.local/library/nginx:v1 --replicas=4 --port=80
+kubectl expose deployment nginx01 --port=80 --type=LoadBalancer
+sleep 30
+kubectl get all
+kubectl delete ns frontend-test
+```
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kube-cli-build.png)
+Select **Save**
+
+In the left pane, select **Build Now** /
+Following the build, the console output should report namespace objects and "Finished: Success"
+
+![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/kube-cli-build-out.png)
 
 
+### Kubernetes Continuous Deploy plugin - 
+Soon
 
 ## Integrate Jenkins with a GitHub Account
 Enter the login credentials and from the Dashboard select **Manage Jenkins**>**Manage Plugins**. Select the **Available** tab and enter "kubernetes" in the search filter. Choose the following plugin options:
