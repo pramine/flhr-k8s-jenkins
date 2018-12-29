@@ -45,14 +45,17 @@ spec:
 `$ kubectl apply -f jenkins-pvc.yaml` \
 `$ kubectl get pvc`
 
-### (Optional) Pull the Images and Push to a Private Registry. If pulling direct from public registry, skip this step.
+### Build a Custom Jenkins Slave Image for using the Kubernetes/Helm CLI plugin
+The default jenkins/jnlp-slave image does not contain the kubectl or helm binaries, so you will need to build a custom image to use the kubernetes-cli plugin. Afterwards, push it to a registry\
+`$ cd jenkins-slave` \
+`$ docker build jnlp-slave-k8s .` \
+`$ docker tag jnlp-slave-k8s <Private Registry FQDN>/<Project>/jnlp-slave-k8s:v1`\
+`$ docker push <Private Registry FQDN>/<Project>/jnlp-slave-k8s:v1` 
+
+### (Optional) Pull the Jenkins Master Image and Push to a Private Registry. If pulling direct from public registry, skip this step.
 `$ docker pull jenkins/jenkins:lts` \
 `$ docker tag jenkins/jenkins <Private Registry FQDN>/<Project>/jenkins-master:v1` \
 `$ docker push <Private Registry FQDN>/<Project>/jenkins-master:v1` 
-
-`$ docker pull jenkins/jnlp-slave` \
-`$ docker tag jenkins/jnlp-slave <Private Registry FQDN>/<Project>/jenkins-slave:v1`\
-`$ docker push <Private Registry FQDN>/<Project>/jenkins-slave:v1` 
 
 ### Install Helm Client and Tiller Server
 
@@ -95,27 +98,19 @@ Open `values.yaml` with a text editor
 
 #### Identify Jenkins Container Images' Location
 
-If pulling images from a private registry, replace the following instances with the appropriate path:
+Replace the *Image* and *ImageTag* values with the appropriate private registy paths. The defualt public images are commented out.
+>If intending to use the Kubernetes CLI Plugin, you will need to follow the steps above to build a custom slave image with the kubectl and helm binaries, then push it to a registry. 
 ```
 Master:
   Image: "harbor.lab.local/jenkins/jenkins-master"
   ImageTag: "v1"
+# Image: "jenkins/jenkins"
+# ImageTag: "lts"
 Agent:
-  Image: "harbor.lab.local/jenkins/jenkins-slave"
+  Image: "harbor.lab.local/jenkins/jenkins-slave-k8s"
   ImageTag: "v1"
-```
-If pulling images direct from public registry, comment out the private registry paths and uncomment the community chart defaults
-```
-Master:
-# Image: "harbor.lab.local/jenkins/jenkins-master"
-# ImageTag: "v1"
-  Image: "jenkins/jenkins"
-  ImageTag: "lts"
-Agent:
-# Image: "harbor.lab.local/jenkins/jenkins-slave"
-# ImageTag: "v1"
-  Image: jenkins/jnlp-slave
-  ImageTag: 3.10-1
+# Image: jenkins/jnlp-slave
+# ImageTag: 3.10-1
 ```
 If behind a proxy, uncomment and update the paths
 ```

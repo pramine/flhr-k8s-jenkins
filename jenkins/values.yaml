@@ -10,7 +10,8 @@
 
 Master:
   Name: jenkins-master
-  Image: harbor.lab.local/jenkins/jenkins-master:v1
+  Image: harbor.lab.local/jenkins/jenkins-master
+  ImageTag: v1
 # Image: "jenkins/jenkins"
 # ImageTag: "lts"
   ImagePullPolicy: "Always"
@@ -157,7 +158,8 @@ Master:
 
 Agent:
   Enabled: true
-  Image: harbor.lab.local/jenkins/jenkins-slave:v1
+  Image: harbor.lab.local/jenkins/jenkins-slave-k8s
+  ImageTag: v1
 # Image: jenkins/jnlp-slave
 # ImageTag: 3.10-1
   CustomJenkinsLabels: []
