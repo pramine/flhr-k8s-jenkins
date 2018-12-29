@@ -430,13 +430,7 @@ Shortly following the builds entering the build queue, Jenkins should automatica
 Both projects shall complete successfully \
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-testprojects-success.png)
 
-### Create and Run a Scripted Pipeline
-
-
-
-
-
-### Create and Run a Declarative Pipeline
+### Kubernetes-plugin Create and Run a Declarative Pipeline
 Return to the Dashboard and Select **New Item** \
 *Enter an Item Name* such as **Declarative Pipeline Example**, select **Pipeline**, and select **OK**
 Scroll to the *Pipeline* section, paste the content from [Declarative Pipeline Example](https://raw.githubusercontent.com/csaroka/kubernetes-jenkins/master/jenkins-pipeline-examples/declarative-pipeline-01)
@@ -445,6 +439,9 @@ From the Dashboard, select **Build Now**
 
 The pipeline creates a single Kubernetes pod with two containers, from maven and busybox images
 ![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-declarative-success.png)
+
+### Kubernetes-cli plugin Execute kubectl Commands from the Shell
+
 
 
 ## Integrate Jenkins with a GitHub Account
