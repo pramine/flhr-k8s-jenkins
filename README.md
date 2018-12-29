@@ -48,9 +48,9 @@ spec:
 ### Build a Custom Jenkins Slave Image for using the Kubernetes/Helm CLI plugin
 The default jenkins/jnlp-slave image does not contain the kubectl or helm binaries, so you will need to build a custom image to use the kubernetes-cli plugin. Afterwards, push it to a registry\
 `$ cd jenkins-slave` \
-`$ docker build jnlp-slave-k8s .` \
-`$ docker tag jnlp-slave-k8s <Private Registry FQDN>/<Project>/jnlp-slave-k8s:v1`\
-`$ docker push <Private Registry FQDN>/<Project>/jnlp-slave-k8s:v1` 
+`$ docker build jenkins-slave-k8s .` \
+`$ docker tag jnlp-slave-k8s <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1`\
+`$ docker push <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1` 
 
 ### (Optional) Pull the Jenkins Master Image and Push to a Private Registry. If pulling direct from public registry, skip this step.
 `$ docker pull jenkins/jenkins:lts` \
@@ -402,7 +402,7 @@ For basic operations, all other fields' default value should've populated with i
 
 - *Cloud*/*Kubernetes*/*Jenkins URL* = **http://jenkins:8080/jenkins**
 - *Cloud*/*Kubernetes*/*Images*/*Kubernetes Pod Template*/*Containers*/*Container Template*/*Docker Image* = **< Registry Path to Jenkins Slave Image >** \
->For example, harbor.lab.local/jenkins/jenkins-slave:v1 or jenkins/jnlp-slave
+>For example, harbor.lab.local/jenkins/jenkins-slave-k8s:v1
 
 Select **Save** and return to the Jenkins Dashboard
 
