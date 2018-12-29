@@ -126,6 +126,10 @@ If behind a proxy, uncomment and update the paths
 ```
 AdminPassword: 'VMware1!'
 ```
+or comment out the parameter to randomly generate a password for you
+```
+# AdminPassword: 'VMware1!'
+```
 #### Configure the Ingress Resource
 
 ##### Set the Ingress Hostname
