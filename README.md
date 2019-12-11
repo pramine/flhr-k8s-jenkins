@@ -46,7 +46,8 @@ spec:
 `$ kubectl get pvc`
 
 ### Build a Custom Jenkins Slave Image for using the Kubernetes/Helm CLI plugin
-The default jenkins/jnlp-slave image does not contain the kubectl or helm binaries, so you will need to build a custom image to use the kubernetes-cli plugin. Afterwards, push it to a registry\
+The default jenkins/jnlp-slave image does not contain the kubectl or helm binaries, so you will need to build a custom image to use the kubernetes-cli plugin. Afterwards, push it to a registry. The DokerFile in the jnlp-slave folder is set to install Helm 3 and kubectl 1.16.
+
 `$ cd jenkins-slave` \
 `$ docker build jenkins-slave-k8s .` \
 `$ docker tag jnlp-slave-k8s <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1`\
@@ -60,59 +61,47 @@ The default jenkins/jnlp-slave image does not contain the kubectl or helm binari
 
 ### Install Helm Client and Tiller Server
 
-Follow instructions available here for installing the Helm client:  
+Follow instructions available here for installing the Helmv3 client:  
 https://docs.helm.sh/using_helm/#installing-helm 
 
-Apply the Tiller Service Account and RBAC policy
-
-`$ cat tiller-rbac.yaml`
-```
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: tiller
-  namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding
-metadata:
-  name: tiller
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-  - kind: ServiceAccount
-    name: tiller
-    namespace: kube-system
-```
-
-`$ kubectl apply -f tiller-rbac.yaml`
-
-Deploy Tiller to the Kubernetes Cluster \
-`$ helm init --service-account tiller`
 
 ### Prepare the Jenkins Helm Chart values.yaml
 
 `$ cd jenkins` \
 Open `values.yaml` with a text editor
 
-#### Identify Jenkins Container Images' Location
+#### Identify Jenkins Container Images' Location  (The values below are for an older chart version) the new chart is in the /jenkins directory.  
 
-Replace the *Image* and *ImageTag* values with the appropriate private registy paths. The defualt public images are commented out.
+Replace the *Image* and *ImageTag* values with the appropriate private registy paths. The defualt public images are commented out.  There are other values such as admin and admin password you could elect to change based on your needs.  Consult the jenkins helm documentation at https://github.com/helm/charts/tree/master/stable/jenkins for further details or updates.
+
+This repo is still not final, but feel free to look at my chart values and substitute your own.  I am using an ingress function for access to my jenkins deployment but you could also expose the service with ServiceType: LoadBalancer.  Further details can again be found at the jenkins helm repo cited above.
+
 >If intending to use the Kubernetes CLI Plugin, you will need to follow the steps above to build a custom slave image with the kubectl and helm binaries, then push it to a registry. 
 ```
-Master:
-  Image: "harbor.lab.local/jenkins/jenkins-master"
-  ImageTag: "v1"
+# Used for label app.kubernetes.io/component
+  componentName: "jenkins-master"
+  image: harbor.flhrnet.local/jenkins/jenkins-master
+  tag: v1
 # Image: "jenkins/jenkins"
-# ImageTag: "lts"
-Agent:
-  Image: "harbor.lab.local/jenkins/jenkins-slave-k8s"
-  ImageTag: "v1"
-# Image: jenkins/jnlp-slave
-# ImageTag: 3.10-1
-```
+
+agent:
+  agent:
+  enabled: true
+  image: harbor.flhrnet.local/jenkins/jenkins-slave-k8s
+  tag: v1
+  customJenkinsLabels: []
+  # name of the secret to be used for image pulling
+  imagePullSecretName:
+  componentName: "jenkins-slave"
+  privileged: false
+  resources:
+    requests:
+      cpu: "512m"
+      memory: "512Mi"
+    limits:
+      cpu: "512m"
+      memory: "512Mi"
+      
 If behind a proxy, uncomment and update the paths
 ```
 # InitContainerEnv:
@@ -128,14 +117,15 @@ AdminPassword: 'VMware1!'
 ```
 or comment out the parameter to randomly generate a password for you
 ```
-# AdminPassword: 'VMware1!'
+adminUser: "admin"
+adminPassword: "VMware1!"
 ```
 #### Configure the Ingress Resource
 
 ##### Set the Ingress Hostname
 >Note: The hostname is customizable but the domain needs to match cluster's ingress controller's wildcard record in DNS. For example, *.pksk8s01apps.lab.local
 ```
-HostName: jenkins.pksk8s01apps.lab.local
+HostName: jenkins.ing.flhrnet.local
 ```
 ##### (Optional) Set the path
 ```
@@ -184,52 +174,12 @@ Use `$ kubectl config view` to verify context and namespace or set with \
 `$ helm install --name=jenkins ./jenkins`
 
 ```
-NAME:   jenkins
-LAST DEPLOYED: Thu Dec 27 18:22:32 2018
-NAMESPACE: jenkins
-STATUS: DEPLOYED
-
-RESOURCES:
-==> v1/ClusterRoleBinding
-NAME                  AGE
-jenkins-role-binding  0s
-
-==> v1/Service
-NAME           TYPE       CLUSTER-IP      EXTERNAL-IP  PORT(S)    AGE
-jenkins-agent  ClusterIP  10.100.200.215  <none>       50000/TCP  0s
-jenkins        ClusterIP  10.100.200.15   <none>       8080/TCP   0s
-
-==> v1/Deployment
-NAME     DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
-jenkins  1        1        1           0          0s
-
-==> v1beta1/Ingress
-NAME     HOSTS                           ADDRESS           PORTS  AGE
-jenkins  jenkins.pksk8s01apps.lab.local  10.12.0.6,100...  80     0s
-
-==> v1/Pod(related)
-NAME                      READY  STATUS    RESTARTS  AGE
-jenkins-7d48db75c5-2mpn9  0/1    Init:0/1  0         0s
-
-==> v1/Secret
-NAME     TYPE    DATA  AGE
-jenkins  Opaque  2     0s
-
-==> v1/ConfigMap
-NAME           DATA  AGE
-jenkins        5     0s
-jenkins-tests  1     0s
-
-==> v1/ServiceAccount
-NAME     SECRETS  AGE
-jenkins  1        0s
-
 
 NOTES:
 1. Get your 'admin' user password by running:
   printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
 
-2. Visit http://jenkins.pksk8s01apps.lab.local
+2. Visit http://jenkins.ing.flhrnet.local
 
 3. Login with the password from step 1 and the username: admin
 
@@ -298,8 +248,9 @@ Enter the login credentials and from the Dashboard select **Manage Jenkins**>**M
 - Kubernetes Continuous Deploy
 - Kubernetes Cli
 - Kubernetes Credentials Provider
-- Kubernetes :: Pipeline :: DevOps Steps
 - Kubernetes :: Pipeline :: Kubernetes Steps
+
+In prior versions - Kubernetes :: Pipeline :: DevOps Steps was also required, but appears to have been deprecated with the curreent reelease.
 
 Select **Download now and install after restart** \
 On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
@@ -345,19 +296,19 @@ With a vi or another text editor, edit the new file sa.kubeconfig, and compare t
 apiVersion: v1
 kind: Config
 clusters:
-- name: k8s01staging
+- name: k8s1
   cluster:
     certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMrekNDQWVPZ0F3SUJBZ0lVUDVpUHd0RlJJSjdwM0NsSE9PU3pKK3ZUR2ZZd0RRWUpLb1pJaHZjTkFRRUwKQ
     <Truncated>
     5QOFVFWjNyblZXWVRidWNxeDEzdUV3b2lvQi93dU4vUFkKcWI2UkdjRW1qbUNFR1gwT0tiaG9rL1BYS3RzZ1ZrY0EzdURCeldZRm1HVUhhQTdJWEplTys3Q0pPMVEzQk13PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
-    server: https://pksk8s01api.lab.local:8443
+    server: https://k8s1.lab.local:8443
 contexts:
-- name: k8s01staging
+- name: k8s01
   context:
-    cluster: k8s01staging
+    cluster: k8s1
     namespace: jenkins
     user: jenkins
-current-context: k8s01staging
+current-context: k8s1
 users:
 - name: jenkins
   user:
