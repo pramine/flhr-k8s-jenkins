@@ -103,15 +103,14 @@ agent:
       memory: "512Mi"
       
 If behind a proxy, uncomment and update the paths
-```
-# InitContainerEnv:
-#   - name: http_proxy
-#     value: "http://192.168.64.1:3128"
-# ContainerEnv:
-#   - name: http_proxy
-#     value: "http://192.168.64.1:3128"
-```
-#### Change the Admin Password
+   # InitContainerEnv:
+   #   - name: http_proxy
+   #     value: "http://192.168.64.1:3128"
+   # ContainerEnv:
+   #   - name: http_proxy
+   #     value: "http://192.168.64.1:3128"
+
+### Change the Admin Password
 ```
 AdminPassword: 'VMware1!'
 ```
